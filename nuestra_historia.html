@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<title>Eres mi historia</title>
+
+<style>
+body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+    background: #141414;
+    color: white;
+}
+
+/* NAVBAR */
+header {
+    display: flex;
+    align-items: center;
+    padding: 15px 40px;
+    position: fixed;
+    width: 100%;
+    z-index: 10;
+    background: linear-gradient(to bottom, rgba(0,0,0,0.8), transparent);
+}
+
+header h1 {
+    color: red;
+    margin-right: 30px;
+}
+
+nav a {
+    color: white;
+    margin-right: 15px;
+    text-decoration: none;
+}
+
+/* HERO */
+.hero {
+    height: 100vh;
+    background: linear-gradient(to right, black, transparent),
+                url('fondo.png') center/cover no-repeat;
+    display: flex;
+    align-items: center;
+    padding: 60px;
+}
+
+.overlay {
+    max-width: 500px;
+}
+
+.overlay h2 {
+    font-size: 60px;
+    margin: 0;
+}
+
+.overlay p {
+    margin: 15px 0;
+}
+
+.info {
+    color: #46d369;
+    font-weight: bold;
+}
+
+.buttons button {
+    margin-right: 10px;
+    padding: 10px 20px;
+    border: none;
+    cursor: pointer;
+    font-weight: bold;
+    border-radius: 5px;
+}
+
+.play {
+    background: white;
+    color: black;
+}
+
+/* FILAS */
+.row {
+    margin-top: -100px;
+    padding: 20px;
+}
+
+.row-posters {
+    display: flex;
+    overflow-x: auto;
+    gap: 15px;
+    padding: 20px;
+}
+
+.poster {
+    min-width: 220px;
+    height: 130px;
+    border-radius: 8px;
+    overflow: hidden;
+    transition: 0.4s;
+}
+
+.poster img {
+    width: 220px;
+    height: 130px;
+    object-fit: cover;
+}
+
+.poster:hover {
+    transform: scale(1.2);
+}
+
+/* MODAL VIDEO */
+#contenedorVideo {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0,0,0,0.9);
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+}
+
+#miVideo {
+    width: 70%;
+    border-radius: 10px;
+}
+
+#cerrar {
+    position: absolute;
+    top: 20px;
+    right: 40px;
+    font-size: 30px;
+    color: white;
+    cursor: pointer;
+}
+</style>
+</head>
+
+<body>
+
+<header>
+    <h1>NETFLIX</h1>
+    <nav>
+        <a href="#">Inicio</a>
+        <a href="#">Series</a>
+        <a href="#">Películas</a>
+    </nav>
+</header>
+
+<!-- PORTADA -->
+<section class="hero">
+    <div class="overlay">
+        <h2>ERES MI HISTORIA</h2>
+
+        <p class="info">98% coincidencia • 2024 • Romance</p>
+
+        <p>
+            Una historia que comenzó sin planearse  
+            y se convirtió en mi lugar favorito.
+        </p>
+
+        <div class="buttons">
+            <button class="play" onclick="verPeli()">▶ Reproducir</button>
+        </div>
+    </div>
+</section>
+
+<!-- PELÍCULAS -->
+<div class="row">
+    <h3>Populares</h3>
+
+    <div class="row-posters">
+        <div class="poster"><img src="img1.png"></div>
+        <div class="poster"><img src="img2.png"></div>
+        <div class="poster"><img src="img3.png"></div>
+        <div class="poster"><img src="img4.png"></div>
+        <div class="poster"><img src="img5.png"></div>
+    </div>
+</div>
+
+<!-- VIDEO MODAL -->
+<div id="contenedorVideo">
+    <span id="cerrar" onclick="cerrarVideo()">✖</span>
+
+    <video id="miVideo" controls>
+        <source src="nuestrahistoria.mp4" type="video/mp4">
+    </video>
+</div>
+
+<script>
+function verPeli() {
+    let contenedor = document.getElementById("contenedorVideo");
+    let video = document.getElementById("miVideo");
+
+    contenedor.style.display = "flex";
+    video.play();
+}
+
+function cerrarVideo() {
+    let contenedor = document.getElementById("contenedorVideo");
+    let video = document.getElementById("miVideo");
+
+    video.pause();
+    video.currentTime = 0;
+    contenedor.style.display = "none";
+}
+</script>
+
+</body>
+</html>
