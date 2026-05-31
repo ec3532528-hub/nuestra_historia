@@ -247,10 +247,33 @@ function verPeli(){
 
 function abrirVideo(videoArchivo){
 
-    let contenedor = document.getElementById("contenedorVideo");
-    let video = document.getElementById("miVideo");
+    const contenedor = document.getElementById("contenedorVideo");
+    const video = document.getElementById("miVideo");
 
     video.src = videoArchivo;
+
+    if(
+        videoArchivo === "video1.mp4" ||
+        videoArchivo === "video2.mp4" ||
+        videoArchivo === "video3.mp4" ||
+        videoArchivo === "video4.mp4"
+    ){
+
+        video.muted = true;
+        video.volume = 0;
+
+        video.onvolumechange = function(){
+            video.muted = true;
+            video.volume = 0;
+        };
+
+    }else{
+
+        video.muted = false;
+        video.volume = 1;
+
+        video.onvolumechange = null;
+    }
 
     contenedor.style.display = "flex";
 
@@ -260,8 +283,8 @@ function abrirVideo(videoArchivo){
 
 function cerrarVideo(){
 
-    let contenedor = document.getElementById("contenedorVideo");
-    let video = document.getElementById("miVideo");
+    const contenedor = document.getElementById("contenedorVideo");
+    const video = document.getElementById("miVideo");
 
     video.pause();
     video.currentTime = 0;
@@ -270,9 +293,10 @@ function cerrarVideo(){
 }
 
 window.onclick = function(event){
-    let contenedor = document.getElementById("contenedorVideo");
 
-    if(event.target == contenedor){
+    const contenedor = document.getElementById("contenedorVideo");
+
+    if(event.target === contenedor){
         cerrarVideo();
     }
 }
@@ -281,4 +305,3 @@ window.onclick = function(event){
 
 </body>
 </html>
-
